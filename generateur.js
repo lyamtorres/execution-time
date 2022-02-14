@@ -1,4 +1,4 @@
-function generateurRec(tab, masterTab, n2) {
+function generateur(tab, masterTab, n2) {
     if (n2 == tab.length) {
         return 1;
     } else {
@@ -14,7 +14,7 @@ function generateurRec(tab, masterTab, n2) {
             
             if (a.indexOf(b) == -1) {
                 masterTab.push(nouveauTab);
-                generateurRec(nouveauTab, masterTab, n2 + 1);
+                generateur(nouveauTab, masterTab, n2 + 1);
             }
         }
     }
@@ -23,9 +23,9 @@ function generateurRec(tab, masterTab, n2) {
 n = 6;
 n2 = 1;
 
-tab = [];
-tabTrue = [];
-masterTab = [];
+const tab = [];
+const tabTrue = [];
+const masterTab = [];
 
 for (let i = 0; i < n; i++) {
     tab.push(false);
@@ -33,7 +33,7 @@ for (let i = 0; i < n; i++) {
 }
 
 masterTab.push(tab);
-generateurRec(tab, masterTab, n2);
+generateur(tab, masterTab, n2);
 masterTab.push(tabTrue);
 
 console.log(masterTab);

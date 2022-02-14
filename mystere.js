@@ -1,6 +1,19 @@
 /* Rôle : Parcourir le tableau T jusqu'à trouver "vrai", et ensuite retourner sa position */
 
+function ecrireFichier(temps) {
+    const fs = require('fs')
+    const content = 'Au mieux: ' + temps + ' ms'
+
+    fs.writeFile('test.txt', content, err => {
+        if (err) {
+            console.error(err)
+            return
+        }
+    })
+}
+
 function mystere(T) {
+    const start = Date.now();
     let i, res;
 
     i = 0;
@@ -9,15 +22,10 @@ function mystere(T) {
     }
     res = i;
     console.log(res);
+
+    const duration = Date.now() - start;
+
+    ecrireFichier(duration);
 }
 
-mystere([false, false, false]);
-/* mystere([false, false, true]);
-mystere([false, true, false]);
-mystere([false, true, true]);
-
-mystere([true, false, false]);
-mystere([true, false, true]);
-mystere([true, true, false]);
-mystere([true, true, true]); */
-
+mystere([true, true, true]);
