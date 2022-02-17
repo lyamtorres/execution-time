@@ -20,20 +20,21 @@ function generateur(tab, masterTab, n2) {
     }
 }
 
-n = 6;
-n2 = 1;
+function genererTableaux(n) {
+    const tab = [];
+    const tabTrue = [];
+    const masterTab = [];
 
-const tab = [];
-const tabTrue = [];
-const masterTab = [];
+    for (let i = 0; i < n; i++) {
+        tab.push(false);
+        tabTrue.push(true);
+    }
 
-for (let i = 0; i < n; i++) {
-    tab.push(false);
-    tabTrue.push(true);
+    masterTab.push(tabTrue);
+    generateur(tab, masterTab, 1);
+    masterTab.push(tab);
+
+    return masterTab;
 }
 
-masterTab.push(tab);
-generateur(tab, masterTab, n2);
-masterTab.push(tabTrue);
-
-console.log(masterTab);
+module.exports = { genererTableaux };

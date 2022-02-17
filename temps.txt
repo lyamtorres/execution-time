@@ -1,7 +1,7 @@
 
-        Au mieux : 10.777999997138977 ms
+        Au mieux : 10.598900020122528 ms
 
-        Au pire : 94.13120001554489 ms
+        Au pire : 0.335099995136261 ms
 
-        En moyenne : 0 ms
+        En moyenne : 0.2663000077009201 ms
         

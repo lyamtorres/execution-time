@@ -1,14 +1,15 @@
 const { performance } = require('perf_hooks');
 const algos = require('./mystere');
+const generateur = require('./generateur');
 
-function ecrireFichier(mieux, pire, moyenne) {
+function ecrireFichier(mieux, pire, moyen) {
     const fs = require('fs');
     const content = `
         Au mieux : ${mieux} ms
 
         Au pire : ${pire} ms
 
-        En moyenne : ${moyenne} ms
+        En moyenne : ${moyen} ms
         `;
 
     fs.writeFile('temps.txt', content, err => {
@@ -19,7 +20,7 @@ function ecrireFichier(mieux, pire, moyenne) {
     })
 }
 
-function getBestCase() {
+function meilleurCas() {
     const tab = [];
 
     tab.push(true);
@@ -30,7 +31,7 @@ function getBestCase() {
     return duration;
 }
 
-function getWorstCase(n) {
+function pireCas(n) {
     const tab = [];
 
     for (let i = 0; i < n; i++) {
@@ -43,8 +44,23 @@ function getWorstCase(n) {
     return duration;
 }
 
-function getAverageCase(n) {
-    return 0;
+function casMoyen(n) {
+    let total = 0;
+    let start, duration;
+
+    // ajoute dans tab toutes les instances pour un n donné
+    const tab = [...generateur.genererTableaux(n)];
+
+    // calcule la duration de mystere pour chaque instance
+    tab.forEach((instance) => {
+        start = performance.now();
+        algos.mystere(instance);
+        duration = performance.now() - start;
+        total += duration;
+    });
+
+    // divise la duration totale par le nombre d'instances
+    return total /= Math.pow(2, n);
 }
 
-module.exports = { ecrireFichier, getBestCase, getWorstCase, getAverageCase };
+module.exports = { ecrireFichier, meilleurCas, pireCas, casMoyen };

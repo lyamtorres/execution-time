@@ -1,0 +1,98 @@
+Exercice 1.2
+
+Q1
+La procédure mystère renvoie la position de la premiere valeur "true" dans un tableau de taille n. Si le tableau n'a aucun true, il renvoie la position n + 1 (une case inexistante dans le tableau).
+
+Q2
+Pour n = 3
+
+[ faux, faux, faux ]
+[ faux, faux, true ]
+[ faux, true, faux ]
+[ faux, true, true ]
+[ true, faux, faux ]
+[ true, faux, true ]
+[ true, true, faux ]
+[ true, true, true ]
+
+Pour une valeur de n fixée, nous avons 2^n instances.
+
+Q3
+Forme des données :
+    On aura le meilleur cas avec n'importe quel tableau ayant une valeur T[0] = true.
+
+Complexité :
+    i <- 1          |   1   |   1          
+    tant que        |   c   |   1
+    i <- i + 1      |   2   |   0   
+    fin tant que    |   -   |   -
+    res <- 1        |   1   |   1
+
+    Cmieux = 1*1 + c*1 + 2*0 + 1*1 = 1 + c + 1 = c + 2
+    Cmieux = O(1)
+
+Q4
+Il existe 2^n / 2 tableau ayant cette forme de données.
+
+Q5
+Forme de données:
+    Tableau n'ayant que des faux.
+
+Complexité:
+    i <- 1          |   1   |   1          
+    tant que        |   c   |   n + 1
+    i <- i + 1      |   2   |   n   
+    fin tant que    |   -   |   -
+    res <- 1        |   1   |   1
+
+    Cmieux = c(n+1) + 2n + 2 = cn + c + 2n + 2 = (c+2)n + c + 2
+    Cmieux = O(n)
+
+Q6
+Il existe un seul tableau n'ayant que des faux pour n'importe quelle valeur de n.
+
+Q7
+Pour n = 2 nous avons 2^2 = 4 instances de tableau différents :
+
+[ faux, faux ]    |   2(c + 2) + c + 2 = 3(c + 2) (pire)
+[ faux, vrai ]    |   2c + 4 = 2(c + 2)  
+    i <- 1          |   1   |   1          
+    tant que        |   c   |   2
+    i <- i + 1      |   2   |   1   
+    fin tant que    |   -   |   -
+    res <- 1        |   1   |   1
+
+[ vrai, faux ]    |   c + 2 = 1(c + 2) (mieux)  
+[ vrai, vrai ]    |   c + 2 = 1(c + 2)(mieux)
+
+Cmoy = 7(c + 2) / 4
+
+Q8
+Pour n = 3 nous avons 2^3 = 8 instances de tableau différents
+
+[ faux, faux, faux ]    |   4(c + 2) (pire)
+[ faux, faux, true ]    |   3(c + 2)
+[ faux, true, faux ]    |   2(c + 2)
+[ faux, true, true ]    |   2(c + 2)
+[ true, faux, faux ]    |   1(c + 2) (mieux)
+[ true, faux, true ]    |   1(c + 2) (mieux)
+[ true, true, faux ]    |   1(c + 2) (mieux)
+[ true, true, true ]    |   1(c + 2) (mieux)
+
+Cmoy = 15(c + 2) / 8
+
+Pour n = 4 nous avons 2^4 = 16 instances de tableau différents
+
+[ faux, faux, faux, faux ]   |   x1   |   5(c + 2) (pire)
+[ faux, faux, faux, true ]   |   x1   |   4c + 8 = 4(c + 2)
+    i <- 1          |   1   |   1          
+    tant que        |   c   |   4
+    i <- i + 1      |   2   |   3   
+    fin tant que    |   -   |   -
+    res <- 1        |   1   |   1
+
+[ faux, faux, true, ... ]   |   x2   |   3(c + 2)
+[ faux, true, ... ]   |   x4   |   2(c + 2)
+[ true, ... ]   |   x8   |   1(c + 2) (mieux)
+
+Cmoy = 31(c + 2) / 16

@@ -1,9 +1,9 @@
 const util = require('./utilitaires');
 
-const n = 10000000; // Taille du tableau
+const n = 2; // Taille du tableau
 
-const mieux = util.getBestCase();
-const pire = util.getWorstCase(n);
-const moyenne = util.getAverageCase(n);
+const mieux = util.meilleurCas();
+const pire = util.pireCas(n);
+const moyen = util.casMoyen(n);
 
-util.ecrireFichier(mieux, pire, moyenne);
+util.ecrireFichier(mieux, pire, moyen);
