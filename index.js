@@ -1,23 +1,9 @@
-const algos = require('./mystere');
-const util = require('./ecrireFichier');
-const { performance } = require('perf_hooks');
+const util = require('./utilitaires');
 
-const n = 5;
-const tab = [];
+const n = 10000000; // Taille du tableau
 
-// Au mieux
+const mieux = util.getBestCase();
+const pire = util.getWorstCase(n);
+const moyenne = util.getAverageCase(n);
 
-// Au pire
-for (let i = 0; i < n; i++) {
-    tab.push(false);
-}
-
-var start = performance.now();
-
-setTimeout(function () {
-    algos.mystere(tab);
-    const duration = performance.now() - start;
-    util.ecrireFichier(duration);
-}, 1000); // Arrête l'exécution de mystere durant 1000ms = 1s
-
-// En moyenne
+util.ecrireFichier(mieux, pire, moyenne);
