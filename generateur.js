@@ -1,4 +1,4 @@
-function generateur(tab, masterTab, n2) {
+/* function generateur(tab, masterTab, n2) {
     if (n2 == tab.length) {
         return 1;
     } else {
@@ -34,6 +34,22 @@ function genererTableaux(n) {
     generateur(tab, masterTab, 1);
     masterTab.push(tab);
 
+    return masterTab;
+} */
+
+function genererTableaux(n) {
+    const masterTab = [];
+
+    for (let i = 0; i < (1 << n); i++) {
+        let tabBooleens = [];
+    
+        for (let j = n - 1; j >= 0; j--) {
+            tabBooleens.push(Boolean(i & (1 << j)));
+        }
+    
+        masterTab.push(tabBooleens);
+    }
+    
     return masterTab;
 }
 

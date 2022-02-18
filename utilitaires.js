@@ -20,8 +20,14 @@ function ecrireFichier(mieux, pire, moyen) {
     })
 }
 
-function meilleurCas() {
+function meilleurCas(n) {
     const tab = [true];
+
+    for (let i = 0; i < n - 1; i++) {
+
+        // ajoute des booléens au hazard dans tab
+        tab.push(Math.random() < 0.5);
+    }
 
     const start = performance.now();
     algos.mystere(tab);
