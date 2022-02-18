@@ -12,9 +12,5 @@
 * Github: [@lyamtorres](https://github.com/lyamtorres)
 * LinkedIn: [@lyamtorres](https://linkedin.com/in/lyamtorres)
 
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
