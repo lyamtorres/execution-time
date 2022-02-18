@@ -1,6 +1,9 @@
 const util = require('./utilitaires');
 
-const n = 2; // Taille du tableau
+// la valeur max de n possible c'est 13
+const n = 13;
+
+const prechauffageOrdi = util.meilleurCas();
 
 const mieux = util.meilleurCas();
 const pire = util.pireCas(n);

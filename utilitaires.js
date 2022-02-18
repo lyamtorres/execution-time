@@ -21,9 +21,7 @@ function ecrireFichier(mieux, pire, moyen) {
 }
 
 function meilleurCas() {
-    const tab = [];
-
-    tab.push(true);
+    const tab = [true];
 
     const start = performance.now();
     algos.mystere(tab);
