@@ -54,17 +54,18 @@ function casMoyen(n) {
 
     // ajoute dans tab toutes les instances pour un n donné
     const tab = [...generateur.genererTableaux(n)];
-
+    const nbInstances = Math.pow(2, n);
+    
     // calcule la duration de mystere pour chaque instance
-    tab.forEach((instance) => {
+    for (let i = 0; i < nbInstances; i++) {
         start = performance.now();
-        algos.mystere(instance);
+        algos.mystere(tab[i]);
         duration = performance.now() - start;
         total += duration;
-    });
+    }
 
     // divise la duration totale par le nombre d'instances
-    return total /= Math.pow(2, n);
+    return total /= nbInstances;
 }
 
 module.exports = { ecrireFichier, meilleurCas, pireCas, casMoyen };
