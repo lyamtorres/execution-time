@@ -85,7 +85,7 @@ function ecrireFichier(mieux, pire, moyen) {
         En moyenne : ${moyen} ms
         `;
 
-    fs.writeFile('temps.txt', content, err => {
+    fs.writeFile('sortie.txt', content, err => {
         if (err) {
             console.error(err);
             return;

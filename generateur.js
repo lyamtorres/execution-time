@@ -54,22 +54,25 @@ function genererTableaux(n) {
 }
 
 function genererTableauxEntiers(n) {
-    const tab = [];
     const min = Math.ceil(-n / 2);
     const max = Math.floor(n / 2);
-    let random, existeNegatif, existePositif;
-    
-    let i = 0;
+    let i, tab, random, existeNegatif, existePositif;
 
+    // recommence la création du tableau si le dernier manque d'un positif ou négatif
     while (!(existeNegatif == true && existePositif == true)) {
+        i = 0;
+        tab = [];
+        existeNegatif = false;
+        existePositif = false;
+
         while (i < n) {
             random = Math.floor(Math.random() * (max - min + 1) + min);
     
-            if (existeNegatif == false && random < 0) {
+            if (existeNegatif === false && random < 0) {
                 existeNegatif = true;
             }
             
-            if (existePositif == false && random > 0) {
+            if (existePositif === false && random > 0) {
                 existePositif = true;
             }
     
@@ -78,12 +81,11 @@ function genererTableauxEntiers(n) {
                 i++;
             }
         }
-
     }
 
     console.log(tab);
 }
 
-// genererTableauxEntiers(4);
+ genererTableauxEntiers(4);
 
 module.exports = { genererTableaux };
