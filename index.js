@@ -1,10 +1,10 @@
-const util = require('./utilitaires');
+const temps = require('./temps');
 
 // la valeur max de n possible c'est 13
 const n = 2;
 
-const mieux = util.meilleurCas(n);
-const pire = util.pireCas(n);
-const moyen = util.casMoyen(n);
+const meilleur = temps.meilleurCas(n);
+const pire = temps.pireCas(n);
+const moyen = temps.casMoyen(n);
 
-util.ecrireFichier(mieux, pire, moyen);
+temps.ecrireFichier(meilleur, pire, moyen);
