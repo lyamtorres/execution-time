@@ -1,38 +1,31 @@
 const { performance } = require('perf_hooks');
-const algos = require('./mystere');
+const algo = require('./mystere');
 const generateur = require('./generateur');
 
-function ecrireFichier(mieux, pire, moyen) {
-    const fs = require('fs');
-    const content = `
-        Au mieux : ${mieux} ms
-
-        Au pire : ${pire} ms
-
-        En moyenne : ${moyen} ms
-        `;
-
-    fs.writeFile('temps.txt', content, err => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-    })
-}
-
+/**
+ * meilleurCas() retourne le plus petit temps d'exécution de la fonction mystere
+ * n représente la taille du tableau utilisé
+ */
 function meilleurCas(n) {
-    const tab = [true];
+    let tempsMin = 0;
 
-    for (let i = 0; i < n - 1; i++) {
+    // ajoute dans tab toutes les instances pour un n donné
+    const tab = [...generateur.genererTableaux(n)];
+    const nbInstances = Math.pow(2, n);
 
-        // ajoute des booléens au hazard dans tab
-        tab.push(Math.random() < 0.5);
+    // calcule la duration minimale parmi toutes les instances
+    for (let i = 0; i < nbInstances; i++) {
+        start = performance.now();
+        algo.mystere(tab[i]);
+        duration = performance.now() - start;
+        console.log(duration);
+
+        if (tempsMin > duration || tempsMin === 0) {
+            tempsMin = duration;
+        }
     }
 
-    const start = performance.now();
-    algos.mystere(tab);
-    const duration = performance.now() - start;
-    return duration;
+    return tempsMin;
 }
 
 /**
@@ -49,7 +42,7 @@ function pireCas(n) {
     // calcule la duration maximale parmi toutes les instances
     for (let i = 0; i < nbInstances; i++) {
         start = performance.now();
-        algos.mystere(tab[i]);
+        algo.mystere(tab[i]);
         duration = performance.now() - start;
 
         if (tempsMax < duration || tempsMax === 0) {
@@ -73,7 +66,7 @@ function casMoyen(n) {
     // calcule la duration de mystere pour chaque instance
     for (let i = 0; i < nbInstances; i++) {
         start = performance.now();
-        algos.mystere(tab[i]);
+        algo.mystere(tab[i]);
         duration = performance.now() - start;
         total += duration;
     }
@@ -82,4 +75,22 @@ function casMoyen(n) {
     return total /= nbInstances;
 }
 
-module.exports = { ecrireFichier, meilleurCas, pireCas, casMoyen };
+function ecrireFichier(mieux, pire, moyen) {
+    const fs = require('fs');
+    const content = `
+        Au mieux : ${mieux} ms
+
+        Au pire : ${pire} ms
+
+        En moyenne : ${moyen} ms
+        `;
+
+    fs.writeFile('temps.txt', content, err => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+    })
+}
+
+module.exports = { meilleurCas, pireCas, casMoyen, ecrireFichier };

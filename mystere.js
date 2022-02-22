@@ -10,7 +10,7 @@ function mystere(T) {
     }
 
     res = i;
-    console.log(res);
+    // console.log(res);
 }
 
 module.exports = { mystere };
