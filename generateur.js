@@ -84,6 +84,6 @@ function genererTableauxEntiers(n) {
     console.log(tab);
 }
 
-genererTableauxEntiers(4);
+// genererTableauxEntiers(4);
 
 module.exports = { genererTableaux };

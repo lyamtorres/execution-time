@@ -35,24 +35,38 @@ function meilleurCas(n) {
     return duration;
 }
 
+/**
+ * pireCas() retourne le plus grand temps d'exécution de la fonction mystere
+ * n représente la taille du tableau utilisé
+ */
 function pireCas(n) {
-    const tab = [];
+    let tempsMax = 0;
 
-    for (let i = 0; i < n; i++) {
-        tab.push(false);
+    // ajoute dans tab toutes les instances pour un n donné
+    const tab = [...generateur.genererTableaux(n)];
+    const nbInstances = Math.pow(2, n);
+
+    // calcule la duration maximale parmi toutes les instances
+    for (let i = 0; i < nbInstances; i++) {
+        start = performance.now();
+        algos.mystere(tab[i]);
+        duration = performance.now() - start;
+
+        if (tempsMax < duration || tempsMax === 0) {
+            tempsMax = duration;
+        }
     }
 
-    const start = performance.now();
-    algos.mystere(tab);
-    const duration = performance.now() - start;
-    return duration;
+    return tempsMax;
 }
 
+/**
+ * casMoyen() retourne le temps moyen d'exécution de la fonction mystere
+ * n représente la taille du tableau utilisé
+ */
 function casMoyen(n) {
     let total = 0;
     let start, duration;
-
-    // ajoute dans tab toutes les instances pour un n donné
     const tab = [...generateur.genererTableaux(n)];
     const nbInstances = Math.pow(2, n);
     
