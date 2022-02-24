@@ -1,5 +1,4 @@
 const { performance } = require('perf_hooks');
-const algo = require('./mystere');
 const generateur = require('./generateur');
 
 /**
