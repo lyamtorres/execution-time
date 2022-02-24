@@ -1,5 +1,6 @@
 const { performance } = require('perf_hooks');
 const generateur = require('./generateur');
+const operation = require('./operation');
 
 /**
  * meilleurCas() retourne le plus petit temps d'exécution de la fonction mystere
@@ -73,6 +74,73 @@ function casMoyen(n) {
     return total /= nbInstances;
 }
 
+function meilleurCasMaxSomme(n, nbTab) {
+    let tempsMin = 0;
+    let start, duration;
+    const tab = [];
+
+    for (let i = 0; i < nbTab; i++) {
+        tab.push(generateur.genererTableauxEntiers(n))
+    }
+
+    // calcule la duration minimale parmi toutes les instances
+    for (let i = 0; i < tab.length; i++) {
+        start = performance.now();
+        operation.maxSomme1(tab[i]);
+        duration = performance.now() - start;
+
+        if (tempsMin > duration || tempsMin === 0) {
+            tempsMin = duration;
+        }
+    }
+
+    return tempsMin;
+}
+
+function pireCasMaxSomme(n, nbTab) {
+    let tempsMax = 0;
+    let start, duration;
+    const tab = [];
+
+    for (let i = 0; i < nbTab; i++) {
+        tab.push(generateur.genererTableauxEntiers(n))
+    }
+
+    // calcule la duration minimale parmi toutes les instances
+    for (let i = 0; i < tab.length; i++) {
+        start = performance.now();
+        operation.maxSomme1(tab[i]);
+        duration = performance.now() - start;
+
+        if (tempsMax < duration || tempsMax === 0) {
+            tempsMax = duration;
+        }
+    }
+
+    return tempsMax;
+}
+
+function casMoyenMaxSomme(n, nbTab) {
+    let total = 0;
+    let start, duration;
+    const tab = [];
+
+    for (let i = 0; i < nbTab; i++) {
+        tab.push(generateur.genererTableauxEntiers(n))
+    }
+
+    // calcule la duration de mystere pour chaque instance
+    for (let i = 0; i < tab.length; i++) {
+        start = performance.now();
+        operation.maxSomme1(tab[i]);
+        duration = performance.now() - start;
+        total += duration;
+    }
+
+    // divise la duration totale par le nombre d'instances
+    return total /= tab.length;
+}
+
 function ecrireFichier(mieux, pire, moyen) {
     const fs = require('fs');
     const content = `
@@ -91,4 +159,4 @@ function ecrireFichier(mieux, pire, moyen) {
     })
 }
 
-module.exports = { meilleurCas, pireCas, casMoyen, ecrireFichier };
+module.exports = { meilleurCas, pireCas, casMoyen, meilleurCasMaxSomme, pireCasMaxSomme, casMoyenMaxSomme, ecrireFichier };

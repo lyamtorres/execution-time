@@ -84,10 +84,10 @@ function genererTableauxEntiers(n) {
         }
     }
 
-    console.log(tab);
+    return tab;
 }
 
 // genererTableaux(2);
 // genererTableauxEntiers(4);
 
-module.exports = { genererTableaux };
+module.exports = { genererTableaux, genererTableauxEntiers };
