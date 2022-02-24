@@ -1,4 +1,4 @@
-/* function generateur(tab, masterTab, n2) {
+function generateur(tab, masterTab, n2) {
     if (n2 == tab.length) {
         return 1;
     } else {
@@ -34,10 +34,11 @@ function genererTableaux(n) {
     generateur(tab, masterTab, 1);
     masterTab.push(tab);
 
+    console.log(masterTab);
     return masterTab;
-} */
+}
 
-function genererTableaux(n) {
+function genererTableauxBis(n) {
     const masterTab = [];
 
     for (let i = 0; i < (1 << n); i++) {
@@ -86,6 +87,7 @@ function genererTableauxEntiers(n) {
     console.log(tab);
 }
 
- genererTableauxEntiers(4);
+genererTableaux(2);
+// genererTableauxEntiers(4);
 
 module.exports = { genererTableaux };

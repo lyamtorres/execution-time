@@ -18,7 +18,6 @@ function meilleurCas(n) {
         start = performance.now();
         algo.mystere(tab[i]);
         duration = performance.now() - start;
-        console.log(duration);
 
         if (tempsMin > duration || tempsMin === 0) {
             tempsMin = duration;
