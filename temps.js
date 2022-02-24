@@ -109,7 +109,7 @@ function pireCasMaxSomme(n, nbTab) {
     // calcule la duration minimale parmi toutes les instances
     for (let i = 0; i < tab.length; i++) {
         start = performance.now();
-        operation.maxSomme1(tab[i]);
+        operation.maxSomme2(tab[i], 1, tab.length);
         duration = performance.now() - start;
 
         if (tempsMax < duration || tempsMax === 0) {

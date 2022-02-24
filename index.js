@@ -17,8 +17,8 @@ const tab3 = [2, -3, 15, 7, -8, 11, -22, -2, -2, 6, 18];
 
 genererTableauxEntiers(); */
 
-const n = 5;
-const nbTab = 1000000;
+const n = 60000;
+const nbTab = 1;
 
 const meilleurMaxSomme = temps.meilleurCasMaxSomme(n, nbTab);
 const pireMaxSomme = temps.pireCasMaxSomme(n, nbTab);
